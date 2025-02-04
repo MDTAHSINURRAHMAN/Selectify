@@ -17,7 +17,6 @@ Selectify is a full-stack web application designed to help users share, explore,
 - **Frontend**: React.js, Tailwind CSS, React Router, Axios
 - **Backend**: Node.js, Express.js, MongoDB
 - **Authentication**: Firebase Authentication, JWT
-- **Payments**: Stripe
 - **State Management**: Context API
 - **Notifications**: SweetAlert, Toast Notifications
 - **Deployment**: Firebase (Frontend), Vercel (Backend)
