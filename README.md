@@ -13,6 +13,9 @@ Selectify is a full-stack web application designed to help users share, explore,
 ### Recommendations For Me Page
 ![Recommendations For Me Screenshot](https://i.ibb.co/gbXBddyy/selectify-recommendations.png)
 
+## 🔗 Live Demo
+[🌐 View Live Project: ](#) (https://selectify-28b2f.web.app/)
+
 ## 🛠 Technologies Used
 - **Frontend**: React.js, Tailwind CSS, React Router, Axios
 - **Backend**: Node.js, Express.js, MongoDB
