@@ -41,10 +41,12 @@ const WhatPeopleSay = () => {
           content="See what people are recommending on Selectify"
         />
       </Helmet>
-      <Logo />
-      <Navbar />
+      <div className="sticky top-0 z-50 bg-white shadow-md">
+        <Logo />
+        <Navbar />
+      </div>
 
-      <div className="relative bg-banner-title text-white py-16">
+      {/* <div className="relative bg-banner-title text-white py-16">
         <motion.div
           className="container mx-auto px-4 text-center"
           initial={{ opacity: 0, y: -50 }}
@@ -54,7 +56,7 @@ const WhatPeopleSay = () => {
           <h1 className="text-5xl font-extrabold mb-6">What People Say</h1>
           <div className="w-20 h-1 bg-white mx-auto"></div>
         </motion.div>
-      </div>
+      </div> */}
 
       <div className="container mx-auto px-4 py-12">
         {loading ? (

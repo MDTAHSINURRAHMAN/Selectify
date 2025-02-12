@@ -58,8 +58,10 @@ const Register = () => {
         <title>Register | Selectify</title>
         <meta name="description" content="Register page of Selectify" />
       </Helmet>
-      <Logo></Logo>
-      <Navbar></Navbar>
+      <div className="sticky top-0 z-50 bg-white shadow-md">
+        <Logo></Logo>
+        <Navbar></Navbar>
+      </div>
       <div className="min-h-screen flex justify-center items-center font-karla text-center">
         <div className="card bg-background-color w-full max-w-lg shrink-0 rounded-none p-2 md:p-5 lg:p-10 shadow-xl">
           <h2 className="text-2xl md:text-4xl font-semibold">
