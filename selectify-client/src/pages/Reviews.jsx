@@ -4,7 +4,6 @@ import axios from "axios";
 import Navbar from "../components/shared/Navbar";
 import { Helmet } from "react-helmet-async";
 import { motion } from "framer-motion";
-import Footer from "../components/shared/Footer";
 
 const Reviews = () => {
   const { data: reviews = [], isLoading } = useQuery({
@@ -68,8 +67,6 @@ const Reviews = () => {
           ))}
         </div>
       </div>
-
-      <Footer />
     </div>
   );
 };
