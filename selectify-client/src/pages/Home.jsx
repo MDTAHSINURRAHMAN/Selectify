@@ -10,9 +10,9 @@ import Navbar from "../components/shared/Navbar";
 import Logo from "../components/shared/logo";
 import "../css/custom-swiper-bullet.css";
 import Footer from "../components/shared/Footer";
-import FeaturesSection from "../components/Features";
+import ComparisonSection from "../components/Features";
 import { Helmet } from "react-helmet-async";
-
+import Reviews from "./Reviews";
 const Home = () => {
   const [recentQueries, setRecentQueries] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -280,7 +280,8 @@ const Home = () => {
           </div>
         </section>
 
-        <FeaturesSection />
+        <ComparisonSection />
+        <Reviews />
       </main>
       
       <Footer />

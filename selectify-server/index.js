@@ -29,6 +29,7 @@ async function run() {
     const database = client.db("selectifyDB");
     const queriesCollection = database.collection("queries");
     const recommendationsCollection = database.collection("recommendations");
+    const reviewsCollection = database.collection("reviews");
 
     // All queries route - GET
     app.get("/all-queries", async (req, res) => {
@@ -144,6 +145,24 @@ async function run() {
       }
     });
 
+    // Add Review Route - POST
+    app.post("/add-review", async (req, res) => {
+      try {
+        const review = req.body;
+        const result = await reviewsCollection.insertOne(review);
+        res.send(result);
+      } catch (error) {
+        res.status(500).send({ message: error.message });
+      }
+    });
+
+    // Get All Reviews Route - GET
+    app.get("/all-reviews", async (req, res) => {
+      const cursor = reviewsCollection.find({});
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+
     // Get All Recommendations Route - GET
     app.get("/recommendations", async (req, res) => {
       const cursor = recommendationsCollection.find({});
@@ -207,6 +226,9 @@ async function run() {
       });
       res.send(result);
     });
+
+    // Add Review Route - POST
+
   } finally {
     // Ensures that the client will close when you finish/error
     // await client.close();

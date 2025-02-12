@@ -8,10 +8,14 @@ import { AuthProvider } from "./providers/AuthProvider";
 import { HelmetProvider } from "react-helmet-async";
 // Toaster
 import { Toaster } from "react-hot-toast";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+
+const queryClient = new QueryClient();
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <AuthProvider>
+   <QueryClientProvider client={queryClient}>
+   <AuthProvider>
       <Toaster
         position="top-right"
         toastOptions={{
@@ -35,5 +39,6 @@ createRoot(document.getElementById("root")).render(
         <RouterProvider router={router} />
       </HelmetProvider>
     </AuthProvider>
+   </QueryClientProvider>
   </StrictMode>
 );

@@ -1,95 +1,72 @@
 import React from "react";
 import { motion } from "framer-motion";
-import {
-  FaEye,
-  FaLightbulb,
-  FaTree,
-  FaShieldAlt,
-  FaTint,
-  FaGlobe,
-} from "react-icons/fa";
 
-const features = [
-  {
-    title: "Protects your eyes",
-    icon: <FaEye />,
-    description:
-      "Equipped with state-of-the-art blue light filters, this feature minimizes eye fatigue and ensures optimal comfort, especially during prolonged usage.",
-  },
-  {
-    title: "Advance Light Protection",
-    icon: <FaLightbulb />,
-    description:
-      "Innovative light-sensitive technology adapts to your surroundings, delivering the perfect brightness and clarity for any environment.",
-  },
-  {
-    title: "Green Energy Produce",
-    icon: <FaTree />,
-    description:
-      "Designed with eco-conscious energy sources, it significantly reduces emissions while promoting sustainable living and environmental care.",
-  },
-  {
-    title: "Splash Resistant",
-    icon: <FaTint />,
-    description:
-      "Resilient against spills and splashes, this feature ensures your device stays functional and reliable in unexpected conditions.",
-  },
-  {
-    title: "Available Globally",
-    icon: <FaGlobe />,
-    description:
-      "Easily accessible in numerous countries, ensuring seamless availability no matter where you are in the world.",
-  },
-  {
-    title: "Steel Frame",
-    icon: <FaShieldAlt />,
-    description:
-      "Crafted with a robust steel frame, it provides unmatched durability and a sleek, modern aesthetic for any setting.",
-  },
-];
+const ComparisonSection = () => {
+  const testimonials = [
+    {
+      name: "Sarah Johnson",
+      role: "Regular User",
+      image: "https://i.pravatar.cc/150?img=1",
+      quote: "Selectify helped me make informed choices about the products I buy. The recommendations are always thoughtful and align with my values."
+    },
+    {
+      name: "Michael Chen", 
+      role: "Community Member",
+      image: "https://i.pravatar.cc/150?img=2",
+      quote: "I love how this platform brings together people who care about ethical consumption. The alternatives suggested are practical and accessible."
+    },
+    {
+      name: "Emma Williams",
+      role: "Active Contributor", 
+      image: "https://i.pravatar.cc/150?img=3",
+      quote: "Being able to both receive and give recommendations makes this a truly collaborative space. It's empowering to help others make better choices."
+    }
+  ];
 
-const FeaturesSection = () => {
   return (
-    <div className="min-h-screen font-karla bg-gradient-to-b from-white to-gray-100 flex flex-col justify-center items-center px-6 py-12">
-      <h2 className="text-3xl text-center md:text-5xl font-bold text-gray-800 mb-12">
-        Explore The Features
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-12 max-w-7xl">
-        {/* Left Column */}
-        {features.map((feature, index) => (
-          <motion.div
-            key={index}
-            className="flex items-start gap-6 bg-white p-6 rounded-none shadow-md hover:shadow-lg transition-transform transform hover:-translate-y-2 w-full"
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: index * 0.2 }}
-          >
-            <div className="text-4xl text-red-500">{feature.icon}</div>
-            <div>
-              <h3 className="text-lg font-semibold text-gray-800">
-                {feature.title}
-              </h3>
-              <p className="text-gray-600">{feature.description}</p>
-            </div>
-          </motion.div>
-        ))}
-      </div>
+    <section className="py-16 bg-gradient-to-b from-white to-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="text-center mb-12"
+          initial={{ opacity: 0, y: -20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900">
+            What People Say
+          </h2>
+          <p className="mt-4 text-xl text-gray-600">
+            Hear from our community members
+          </p>
+        </motion.div>
 
-      {/* Center Image */}
-      <motion.div
-        className="mt-12 flex-shrink-0"
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.8 }}
-      >
-        <img
-          src="https://via.placeholder.com/300x400" // Replace with your product image
-          alt="Product"
-          className="w-64 md:w-80 rounded-lg shadow-md"
-        />
-      </motion.div>
-    </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {testimonials.map((testimonial, index) => (
+            <motion.div
+              key={index}
+              className="bg-white rounded-xl shadow-lg p-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <div className="flex items-center space-x-4 mb-6">
+                <img
+                  src={testimonial.image}
+                  alt={testimonial.name}
+                  className="w-16 h-16 rounded-full"
+                />
+                <div>
+                  <h3 className="text-lg font-semibold text-gray-900">{testimonial.name}</h3>
+                  <p className="text-gray-600">{testimonial.role}</p>
+                </div>
+              </div>
+              <p className="text-gray-600 italic">"{testimonial.quote}"</p>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 };
 
-export default FeaturesSection;
+export default ComparisonSection;
