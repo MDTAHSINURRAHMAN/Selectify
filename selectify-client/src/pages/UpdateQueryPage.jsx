@@ -65,23 +65,27 @@ const UpdateQueryPage = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <Helmet>
         <title>Update Query | Selectify</title>
         <meta name="description" content="Update query page of Selectify" />
       </Helmet>
-      <Logo></Logo>
-      <Navbar></Navbar>
-      <div className="relative bg-banner-title text-white py-16 overflow-hidden">
+
+      {/* Sticky Header */}
+      <div className="sticky top-0 z-50 bg-white shadow-md">
+        <Logo />
+        <Navbar />
+      </div>
+
+      {/* <div className="relative bg-banner-title text-white py-12 md:py-16 lg:py-20">
         <motion.div
           className="container mx-auto px-4 text-center"
           initial={{ opacity: 0, y: -50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
         >
-          {/* Section Heading */}
           <motion.h1
-            className="text-5xl font-extrabold mb-6 tracking-wide drop-shadow-md"
+            className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-4 md:mb-6 tracking-wide drop-shadow-md"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.6, ease: "easeOut" }}
@@ -89,18 +93,16 @@ const UpdateQueryPage = () => {
             Update Query
           </motion.h1>
 
-          {/* Decorative Line */}
           <motion.div
-            className="w-20 h-1 bg-white mx-auto mb-6"
+            className="w-16 md:w-20 h-1 bg-white mx-auto mb-4 md:mb-6"
             initial={{ scaleX: 0 }}
             animate={{ scaleX: 1 }}
             transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
           ></motion.div>
 
-          {/* Call-to-Action Button */}
           <motion.button
             onClick={() => navigate("/my-queries")}
-            className="bg-white text-banner-title px-8 py-3 rounded-none font-semibold shadow-md hover:bg-hover-color hover:text-white hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+            className="bg-white text-banner-title px-6 md:px-8 py-2 md:py-3 rounded-none font-semibold shadow-md hover:bg-hover-color hover:text-white hover:shadow-lg transition-all duration-300 transform hover:scale-105"
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
@@ -108,14 +110,14 @@ const UpdateQueryPage = () => {
             My Queries
           </motion.button>
         </motion.div>
-      </div>
-      <div className="min-h-screen bg-gradient-to-r from-gray-100 to-gray-200 py-12 px-4 sm:px-6 lg:px-8 font-karla">
-        {" "}
+      </div> */}
+
+      <div className="flex-grow container mx-auto py-8 md:py-12 px-4 sm:px-6 lg:px-8 font-karla">
         <form
           onSubmit={handleSubmit}
-          className="space-y-6 bg-white p-6 rounded-none shadow-md max-w-lg mx-auto"
+          className="space-y-4 md:space-y-6 bg-white p-4 md:p-6 lg:p-8 rounded-none shadow-md max-w-lg mx-auto"
         >
-          <h2 className="text-2xl font-bold text-gray-700 text-center">
+          <h2 className="text-xl md:text-2xl font-bold text-gray-700 text-center">
             Update Query
           </h2>
 
@@ -132,7 +134,7 @@ const UpdateQueryPage = () => {
               name="productName"
               value={query.productName}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-none focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              className="w-full p-2 md:p-3 border border-gray-300 rounded-none focus:ring-2 focus:ring-blue-400 focus:outline-none"
               required
             />
           </div>
@@ -150,7 +152,7 @@ const UpdateQueryPage = () => {
               name="productBrand"
               value={query.productBrand}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-none focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              className="w-full p-2 md:p-3 border border-gray-300 rounded-none focus:ring-2 focus:ring-blue-400 focus:outline-none"
               required
             />
           </div>
@@ -168,7 +170,7 @@ const UpdateQueryPage = () => {
               name="productImageUrl"
               value={query.productImageUrl}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-none focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              className="w-full p-2 md:p-3 border border-gray-300 rounded-none focus:ring-2 focus:ring-blue-400 focus:outline-none"
               required
             />
           </div>
@@ -186,7 +188,7 @@ const UpdateQueryPage = () => {
               name="queryTitle"
               value={query.queryTitle}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-none focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              className="w-full p-2 md:p-3 border border-gray-300 rounded-none focus:ring-2 focus:ring-blue-400 focus:outline-none"
               required
             />
           </div>
@@ -203,20 +205,21 @@ const UpdateQueryPage = () => {
               name="boycottReason"
               value={query.boycottReason}
               onChange={handleChange}
-              className="w-full p-3 border border-gray-300 rounded-none focus:ring-2 focus:ring-blue-400 focus:outline-none"
+              className="w-full p-2 md:p-3 border border-gray-300 rounded-none focus:ring-2 focus:ring-blue-400 focus:outline-none min-h-[100px]"
               required
             />
           </div>
 
           <button
             type="submit"
-            className="w-full bg-banner-title rounded-none hover:bg-hover-color text-white font-medium py-3 transition duration-200"
+            className="w-full bg-banner-title rounded-none hover:bg-hover-color text-white font-medium py-2 md:py-3 transition duration-200"
           >
             Update Query
           </button>
         </form>
       </div>
-      <Footer></Footer>
+
+      <Footer />
     </div>
   );
 };

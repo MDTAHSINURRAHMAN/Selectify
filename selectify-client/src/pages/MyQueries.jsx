@@ -55,7 +55,7 @@ const MyQueries = () => {
   if (loading) {
     return (
       <div className="min-h-screen flex justify-center items-center">
-        Loading...
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-banner-title"></div>
       </div>
     );
   }
@@ -66,77 +66,74 @@ const MyQueries = () => {
         <title>My Queries | Selectify</title>
         <meta name="description" content="My queries page of Selectify" />
       </Helmet>
-      <Logo></Logo>
-      <Navbar></Navbar>
-      <div className="min-h-screen bg-gray-100">
+      <div className="sticky top-0 z-50 bg-white shadow-md">
+        <Logo />
+        <Navbar />
+      </div>
+      <div className="min-h-screen bg-gray-50">
         {/* Banner Section */}
-        <div className="relative bg-banner-title text-white py-16 overflow-hidden">
+        {/* <div className="relative bg-banner-title text-white py-12 md:py-20">
           <motion.div
             className="container mx-auto px-4 text-center"
             initial={{ opacity: 0, y: -50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, ease: "easeOut" }}
+            transition={{ duration: 0.8 }}
           >
-            {/* Section Heading */}
             <motion.h1
-              className="text-5xl font-extrabold mb-6 tracking-wide drop-shadow-md"
+              className="text-3xl md:text-5xl font-bold mb-4"
               initial={{ scale: 0.8, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.6, ease: "easeOut" }}
+              transition={{ duration: 0.6 }}
             >
               My Queries
             </motion.h1>
 
-            {/* Decorative Line */}
             <motion.div
-              className="w-20 h-1 bg-white mx-auto mb-6"
+              className="w-16 h-1 bg-white mx-auto mb-6"
               initial={{ scaleX: 0 }}
               animate={{ scaleX: 1 }}
-              transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
+              transition={{ duration: 0.5, delay: 0.3 }}
             ></motion.div>
 
-            {/* Call-to-Action Button */}
             <motion.button
               onClick={() => navigate("/add-query")}
-              className="bg-white text-banner-title px-8 py-3 rounded-none font-semibold shadow-md hover:bg-hover-color hover:text-white hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+              className="btn bg-white text-banner-title hover:bg-banner-title hover:text-white border-none px-8"
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
+              transition={{ duration: 0.5, delay: 0.5 }}
             >
               Add New Query
             </motion.button>
           </motion.div>
-        </div>
+        </div> */}
 
         {/* Queries Section */}
-        <div className="max-w-7xl mx-auto py-12 px-4">
+        <div className="container mx-auto py-8 md:py-12 px-4">
           {queries.length === 0 ? (
-            <div className="text-center">
+            <div className="text-center bg-white p-8 rounded-lg shadow-sm">
               <h2 className="text-2xl font-semibold mb-6 text-gray-700">
                 No Queries Found
               </h2>
               <button
                 onClick={() => navigate("/add-query")}
-                className="bg-gradient-to-r from-banner-title to-hover-color hover:from-hover-color hover:to-banner-title text-white font-bold py-3 px-6 rounded-none shadow-lg transform transition duration-300 hover:scale-105"
+                className="btn bg-banner-title text-white hover:bg-hover-color border-none"
               >
                 Add Your First Query
               </button>
             </div>
           ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {queries.map((query) => (
                 <div
                   key={query._id}
-                  className="bg-white rounded-none shadow-lg overflow-hidden hover:shadow-xl transform transition duration-300 hover:scale-105"
+                  className="bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300"
                 >
-                  {/* Product Image */}
                   <img
                     src={query.productImageUrl}
                     alt={query.productName}
-                    className="w-full h-48 object-cover"
+                    className="w-full h-48 object-cover rounded-t-lg"
                   />
 
-                  {/* Query Content */}
                   <div className="p-6">
                     <h3 className="text-xl font-semibold text-banner-title mb-2 truncate">
                       {query.queryTitle}
@@ -150,23 +147,22 @@ const MyQueries = () => {
                       {query.productBrand}
                     </p>
 
-                    {/* Action Buttons */}
-                    <div className="flex flex-wrap gap-2">
+                    <div className="flex flex-col gap-2">
                       <button
                         onClick={() => navigate(`/query/${query._id}`)}
-                        className="flex-1 bg-banner-title hover:bg-hover-color text-white text-sm font-medium py-2 px-2 rounded-none shadow transition duration-300"
+                        className="btn btn-block bg-banner-title text-white hover:bg-hover-color border-none"
                       >
                         View Details
                       </button>
                       <button
                         onClick={() => navigate(`/update-query/${query._id}`)}
-                        className="flex-1 border-banner-title border hover:bg-hover-color hover:text-white text-banner-title text-sm font-medium py-2 px-2 rounded-none shadow transition duration-300"
+                        className="btn btn-block btn-outline text-banner-title hover:bg-banner-title hover:text-white"
                       >
                         Update
                       </button>
                       <button
                         onClick={() => handleDelete(query._id)}
-                        className="flex-1 bg-red-500 hover:bg-red-600 text-white text-sm font-medium py-2 px-2 rounded-none shadow transition duration-300"
+                        className="btn btn-block bg-red-500 text-white hover:bg-red-600 border-none"
                       >
                         Delete
                       </button>

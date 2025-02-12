@@ -40,7 +40,6 @@ const MyRecommendations = () => {
 
     if (confirmed) {
       try {
-        // Delete the recommendation
         const deleteResponse = await fetch(
           `https://selectify-sigma.vercel.app/recommendations/${id}`,
           {
@@ -49,7 +48,6 @@ const MyRecommendations = () => {
         );
 
         if (deleteResponse.ok) {
-          // Decrease recommendation count for the query
           await fetch(
             `https://selectify-sigma.vercel.app/query/${queryId}/decrement-recommendations`,
             {
@@ -57,7 +55,6 @@ const MyRecommendations = () => {
             }
           );
 
-          // Update local state
           setRecommendations((prev) => prev.filter((rec) => rec._id !== id));
           toast.success("Recommendation deleted successfully");
         }
@@ -68,7 +65,7 @@ const MyRecommendations = () => {
   };
 
   return (
-    <div>
+    <div className="min-h-screen flex flex-col bg-gray-50">
       <Helmet>
         <title>My Recommendations | Selectify</title>
         <meta
@@ -76,108 +73,77 @@ const MyRecommendations = () => {
           content="My recommendations page of Selectify"
         />
       </Helmet>
-      <Logo></Logo>
-      <Navbar></Navbar>
-      <div className="relative bg-banner-title text-white py-16 overflow-hidden">
+
+      {/* Sticky Header */}
+      <div className="sticky top-0 z-50 bg-white shadow-md">
+        <Logo />
+        <Navbar />
+      </div>
+
+      {/* Hero Section */}
+      {/* <div className="bg-banner-title text-white py-12 md:py-20">
         <motion.div
           className="container mx-auto px-4 text-center"
-          initial={{ opacity: 0, y: -50 }}
+          initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
+          transition={{ duration: 0.6 }}
         >
-          {/* Section Heading */}
-          <motion.h1
-            className="text-5xl font-extrabold mb-6 tracking-wide drop-shadow-md"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.6, ease: "easeOut" }}
-          >
+          <h1 className="text-3xl md:text-5xl font-bold mb-4">
             My Recommendations
-          </motion.h1>
-
-          {/* Decorative Line */}
-          <motion.div
-            className="w-20 h-1 bg-white mx-auto mb-6"
-            initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ duration: 0.5, delay: 0.3, ease: "easeOut" }}
-          ></motion.div>
-
-          {/* Call-to-Action Button */}
-          {/* <motion.button
-              onClick={() => navigate("/")}
-              className="bg-white text-banner-title px-8 py-3 rounded-none font-semibold shadow-md hover:bg-hover-color hover:text-white hover:shadow-lg transition-all duration-300 transform hover:scale-105"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
-            >
-              Home
-            </motion.button> */}
+          </h1>
+          <div className="w-16 h-1 bg-white mx-auto"></div>
         </motion.div>
-      </div>
-      <div className="min-h-screen bg-gradient-to-r from-gray-100 to-gray-200 py-12 px-4 sm:px-6 lg:px-8 font-karla">
+      </div> */}
+
+      {/* Main Content */}
+      <div className="flex-grow container mx-auto px-4 py-8 md:py-12">
         {loading ? (
-          <div className="text-center py-10">
-            <p className="text-lg font-semibold text-gray-600">
-              Loading recommendations...
-            </p>
+          <div className="flex justify-center items-center h-64">
+            <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-banner-title"></div>
           </div>
         ) : recommendations.length === 0 ? (
-          <div className="text-center py-10">
-            <p className="text-lg font-semibold text-gray-600">
-              No recommendations found.
-            </p>
+          <div className="text-center py-12 bg-white rounded-lg shadow-sm">
+            <h2 className="text-xl text-gray-600">No recommendations found</h2>
+            <p className="text-gray-500 mt-2">Start by adding some recommendations</p>
           </div>
         ) : (
-          <div className="overflow-x-auto">
-            <table className="table-auto w-full border-collapse shadow-lg rounded-none overflow-hidden">
-              <thead className="bg-gradient-to-r from-banner-title to-banner-title text-white">
-                <tr>
-                  <th className="px-6 py-4 text-left text-sm font-bold tracking-wide">
-                    Product Name
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-bold tracking-wide">
-                    Recommendation Title
-                  </th>
-                  <th className="px-6 py-4 text-left text-sm font-bold tracking-wide">
-                    Recommendation Reason
-                  </th>
-                  <th className="px-6 py-4 text-center text-sm font-bold tracking-wide">
-                    Actions
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-200 bg-white">
-                {recommendations.map((rec) => (
-                  <tr
-                    key={rec._id}
-                    className="hover:bg-gray-100 transition duration-200"
-                  >
-                    <td className="px-6 py-4 text-gray-700 text-sm">
-                      {rec.productName}
-                    </td>
-                    <td className="px-6 py-4 text-gray-700 text-sm">
-                      {rec.recommendationTitle}
-                    </td>
-                    <td className="px-6 py-4 text-gray-700 text-sm">
-                      {rec.recommendationReason}
-                    </td>
-                    <td className="px-6 py-4 text-center">
-                      <button
-                        onClick={() => handleDelete(rec._id, rec.queryId)}
-                        className="bg-red-500 text-white px-4 py-2 rounded-none hover:bg-red-600 transition duration-200 shadow-md"
-                      >
-                        Delete
-                      </button>
-                    </td>
+          <div className="bg-white rounded-lg shadow-sm overflow-hidden">
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead className="bg-banner-title text-white">
+                  <tr>
+                    <th className="px-4 py-3 text-left text-sm font-semibold">Product</th>
+                    <th className="px-4 py-3 text-left text-sm font-semibold hidden md:table-cell">Title</th>
+                    <th className="px-4 py-3 text-left text-sm font-semibold hidden lg:table-cell">Reason</th>
+                    <th className="px-4 py-3 text-center text-sm font-semibold">Actions</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody className="divide-y divide-gray-200">
+                  {recommendations.map((rec) => (
+                    <tr key={rec._id} className="hover:bg-gray-50">
+                      <td className="px-4 py-4 text-sm text-gray-900">{rec.productName}</td>
+                      <td className="px-4 py-4 text-sm text-gray-600 hidden md:table-cell">{rec.recommendationTitle}</td>
+                      <td className="px-4 py-4 text-sm text-gray-600 hidden lg:table-cell">
+                        <div className="max-w-xs truncate">{rec.recommendationReason}</div>
+                      </td>
+                      <td className="px-4 py-4 text-center">
+                        <button
+                          onClick={() => handleDelete(rec._id, rec.queryId)}
+                          className="inline-flex items-center px-3 py-2 border border-transparent text-sm font-medium rounded-md text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 transition-colors duration-200"
+                        >
+                          Delete
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         )}
       </div>
-      <Footer></Footer>
+
+      <Footer />
     </div>
   );
 };
