@@ -20,18 +20,24 @@ const Navbar = () => {
     },
     {
       key: 3,
+      label: "What People Say",
+      to: "/what-people-say",
+      isPublic: true,
+    },
+    {
+      key: 4,
       label: "Recommendations for me",
       to: "/recommendations",
       isPublic: false,
     },
     {
-      key: 4,
+      key: 5,
       label: "My Queries",
       to: "/my-queries",
       isPublic: false,
     },
     {
-      key: 5,
+      key: 6,
       label: "My Recommendations",
       to: "/my-recommendations",
       isPublic: false,

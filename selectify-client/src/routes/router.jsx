@@ -12,6 +12,7 @@ import QueryDetails from "../pages/QueryDetails";
 import UpdateQueryPage from "../pages/UpdateQueryPage";
 import Home from "../pages/Home";
 import Error from "../pages/Error";
+import WhatPeopleSay from "../pages/WhatPeopleSay";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +21,10 @@ const router = createBrowserRouter([
   {
     path: "/queries",
     element: <Queries></Queries>,
+  },
+  {
+    path: "/what-people-say",
+    element: <WhatPeopleSay></WhatPeopleSay>,
   },
   {
     path: "/add-query",

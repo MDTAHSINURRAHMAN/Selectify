@@ -143,6 +143,14 @@ async function run() {
         res.status(500).send({ message: error.message });
       }
     });
+
+    // Get All Recommendations Route - GET
+    app.get("/recommendations", async (req, res) => {
+      const cursor = recommendationsCollection.find({});
+      const result = await cursor.toArray();
+      res.send(result);
+    });
+
     // Add Recommendation Route - POST
     app.post("/recommendations", async (req, res) => {
       const recommendation = req.body;

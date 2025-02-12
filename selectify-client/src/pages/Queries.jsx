@@ -21,7 +21,7 @@ const Queries = () => {
     const fetchQueries = async () => {
       try {
         const response = await fetch(
-          `https://selectify-sigma.vercel.app/all-queries`
+          "https://selectify-sigma.vercel.app/all-queries"
         );
         const data = await response.json();
         // Sort queries in descending order by timestamp
@@ -36,10 +36,8 @@ const Queries = () => {
       }
     };
 
-    if (user?.email) {
-      fetchQueries();
-    }
-  }, [user]);
+    fetchQueries();
+  }, []);
 
   // Filter queries based on search text
   const filteredQueries = queries.filter((query) =>
@@ -97,7 +95,13 @@ const Queries = () => {
 
             {/* Call-to-Action Button */}
             <motion.button
-              onClick={() => navigate("/add-query")}
+              onClick={() => {
+                if (!user) {
+                  toast.error("Please login first to add a query");
+                  return;
+                }
+                navigate("/add-query");
+              }}
               className="bg-white text-banner-title px-8 py-3 rounded-none font-semibold shadow-md hover:bg-hover-color hover:text-white hover:shadow-lg transition-all duration-300 transform hover:scale-105"
               initial={{ y: 50, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -164,7 +168,7 @@ const Queries = () => {
 
         {/* Queries Section */}
         <div className="container mx-auto px-4 py-12">
-          {loading ? (
+          { loading ? (
             <div className="text-center">
               <span className="loading loading-spinner loading-lg"></span>
             </div>

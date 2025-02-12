@@ -12,6 +12,7 @@ import "../css/custom-swiper-bullet.css";
 import Footer from "../components/shared/Footer";
 import FeaturesSection from "../components/Features";
 import { Helmet } from "react-helmet-async";
+
 const Home = () => {
   const [recentQueries, setRecentQueries] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -38,328 +39,251 @@ const Home = () => {
 
   const sliderData = [
     {
-      image:
-        "https://i.ibb.co.com/9gHxdk2/pexels-paula-schmidt-353488-963486.jpg",
+      image: "https://i.ibb.co.com/9gHxdk2/pexels-paula-schmidt-353488-963486.jpg",
       title: "Comfort",
       subtitle: "Stylish Seating",
-      description:
-        "Discover the perfect chairs to enhance your comfort and style for any room in your home.",
+      description: "Discover the perfect chairs to enhance your comfort and style for any room in your home.",
     },
     {
-      image: "https://i.ibb.co.com/kMS2Y25/pexels-pixabay-276534.jpg",
+      image: "https://i.ibb.co.com/kMS2Y25/pexels-pixabay-276534.jpg", 
       title: "Elegance",
       subtitle: "Modern Living",
-      description:
-        "Explore sleek and functional furniture options to transform your living space into a modern haven.",
+      description: "Explore sleek and functional furniture options to transform your living space into a modern haven.",
     },
     {
       image: "https://i.ibb.co.com/8BX4JvT/pexels-fotoaibe-1743229.jpg",
-      title: "Relaxation",
+      title: "Relaxation", 
       subtitle: "Cozy Bedrooms",
-      description:
-        "Create a restful sanctuary with thoughtfully recommended bedroom essentials.",
+      description: "Create a restful sanctuary with thoughtfully recommended bedroom essentials.",
     },
   ];
 
   return (
-    <div>
+    <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
       <Helmet>
         <title>Home | Selectify</title>
         <meta name="description" content="Home page of Selectify" />
       </Helmet>
-      <Logo></Logo>
-      <Navbar></Navbar>
-      <div className="pb-8">
-        {/* Slider Section */}
-        <Swiper
-          modules={[Autoplay, Navigation, Pagination]}
-          spaceBetween={50}
-          slidesPerView={1}
-          autoplay={{ delay: 3000 }}
-          navigation
-          pagination={{ clickable: true }}
-          onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
-        >
-          {sliderData.map((slide, index) => (
-            <SwiperSlide key={index}>
-              <div
-                className="relative h-[300px] md:h-[600px] rounded-none overflow-hidden"
-                style={{
-                  backgroundImage: `url(${slide.image})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                }}
-              >
-                <div className="absolute inset-0 bg-black opacity-40"></div>
-                <AnimatePresence>
-                  <div className="absolute inset-0 flex flex-col justify-center items-center md:items-start text-white pl-0 md:pl-20">
-                    {/* Title Animation */}
-                    <motion.h2
-                      className="text-2xl md:text-4xl text-center md:text-left text-banner-title font-karla font-normal tracking-widest"
-                      initial={{ y: -50, opacity: 0 }}
-                      animate={
-                        activeIndex === index
-                          ? { y: 0, opacity: 1 }
-                          : { opacity: 0 }
-                      }
-                      transition={{
-                        duration: 0.5,
-                        type: "spring",
-                        stiffness: 80,
-                      }}
-                    >
-                      {slide.title}
-                    </motion.h2>
 
-                    {/* Subtitle Animation */}
-                    <motion.h3
-                      className="mt-2 md:mt-4 text-2xl md:text-5xl text-center md:text-left text-banner-title font-karla font-bold tracking-widest"
-                      initial={{ scale: 0 }}
-                      animate={
-                        activeIndex === index
-                          ? { scale: 1, opacity: 1 }
-                          : { scale: 0, opacity: 0 }
-                      }
-                      transition={{ duration: 0.6, delay: 0.3 }}
-                    >
-                      {slide.subtitle}
-                    </motion.h3>
+      {/* Fixed Header Section */}
+      <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
+        <Logo />
+        <div className="w-full">
+          <Navbar />
+        </div>
+      </div>
 
-                    {/* Description Animation */}
-                    <motion.p
-                      className="mt-2 md:mt-6 text-sm md:text-2xl text-center md:text-left text-background-color font-karla font-normal"
-                      initial={{ x: -100, opacity: 0 }}
-                      animate={
-                        activeIndex === index
-                          ? { x: 0, opacity: 1 }
-                          : { x: 100, opacity: 0 }
-                      }
-                      transition={{ duration: 0.7, delay: 0.5 }}
-                    >
-                      {slide.description}
-                    </motion.p>
-                  </div>
-                </AnimatePresence>
-              </div>
-            </SwiperSlide>
-          ))}
-        </Swiper>
+      {/* Main Content with Padding Top to Account for Fixed Header */}
+      <main className="pt-[140px] pb-16">
+        {/* Hero Slider Section */}
+        <section className="relative">
+          <Swiper
+            modules={[Autoplay, Navigation, Pagination]}
+            spaceBetween={0}
+            slidesPerView={1}
+            autoplay={{ delay: 5000 }}
+            navigation
+            pagination={{ clickable: true }}
+            onSlideChange={(swiper) => setActiveIndex(swiper.activeIndex)}
+            className="group"
+          >
+            {sliderData.map((slide, index) => (
+              <SwiperSlide key={index}>
+                <div
+                  className="relative h-[70vh] overflow-hidden"
+                  style={{
+                    backgroundImage: `url(${slide.image})`,
+                    backgroundSize: "cover",
+                    backgroundPosition: "center",
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-black/60 to-black/30" />
+                  <AnimatePresence>
+                    <div className="absolute inset-0 flex flex-col justify-center max-w-7xl mx-auto px-8">
+                      <motion.h2
+                        className="text-3xl md:text-5xl text-white font-light tracking-wider mb-4"
+                        initial={{ y: -50, opacity: 0 }}
+                        animate={activeIndex === index ? { y: 0, opacity: 1 } : { opacity: 0 }}
+                        transition={{ duration: 0.8, ease: "easeOut" }}
+                      >
+                        {slide.title}
+                      </motion.h2>
+
+                      <motion.h3
+                        className="text-4xl md:text-7xl text-white font-bold tracking-tight mb-6"
+                        initial={{ scale: 0.8 }}
+                        animate={activeIndex === index ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
+                        transition={{ duration: 0.6, delay: 0.3 }}
+                      >
+                        {slide.subtitle}
+                      </motion.h3>
+
+                      <motion.p
+                        className="text-lg md:text-xl text-gray-200 max-w-2xl"
+                        initial={{ x: -40, opacity: 0 }}
+                        animate={activeIndex === index ? { x: 0, opacity: 1 } : { x: -40, opacity: 0 }}
+                        transition={{ duration: 0.8, delay: 0.5 }}
+                      >
+                        {slide.description}
+                      </motion.p>
+                    </div>
+                  </AnimatePresence>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </section>
 
         {/* Recent Queries Section */}
-        <div className="mt-10 font-karla">
-          <h2 className="text-4xl font-bold mb-8 text-center text-gray-800">
+        <section className="max-w-7xl mx-auto px-4 py-16">
+          <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">
             Recent Queries
           </h2>
+          
           {loading ? (
-            <div className="flex justify-center items-center">
-              <p className="text-lg text-gray-500 animate-pulse">
-                Loading recent queries...
-              </p>
+            <div className="flex justify-center">
+              <div className="w-16 h-16 border-4 border-banner-title border-t-transparent rounded-full animate-spin" />
             </div>
           ) : (
-            <div className="font-poppins grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {recentQueries.map((query) => (
                 <motion.div
                   key={query._id}
-                  className="relative bg-gray-100 text-white shadow-lg rounded-none p-6 hover:shadow-2xl hover:scale-105 transform transition-all duration-300"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ duration: 0.5 }}
+                  className="bg-white rounded-lg shadow-lg overflow-hidden transform hover:-translate-y-1 transition-all duration-300"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  whileHover={{ scale: 1.02 }}
                 >
-                  {/* Ribbon Decor */}
-                  <div className="absolute top-0 left-0 bg-hover-color text-white text-sm font-bold px-3 py-1 rounded-br-md shadow-md">
-                    New
-                  </div>
-
-                  {/* Product Image */}
-                  <img
-                    src={query.productImageUrl}
-                    alt={query.productName}
-                    className="w-full h-48 object-cover rounded-none"
-                  />
-
-                  {/* Product Details */}
-                  <div className="mt-4">
-                    <h3 className="text-md font-semibold text-banner-title">
-                      {query.productName}
-                    </h3>
-                    <p className="text-xl font-normal text-gray-500">
-                      Brand: {query.productBrand}
-                    </p>
-                  </div>
-
-                  {/* User Information */}
-                  <div className="flex items-center mt-4">
+                  <div className="relative">
                     <img
-                      src={query.userImage}
-                      alt={query.userName}
-                      className="w-10 h-10 rounded-full object-cover border-2 border-hover-color"
+                      src={query.productImageUrl}
+                      alt={query.productName}
+                      className="w-full h-64 object-cover"
                     />
-                    <div className="ml-3">
-                      <p className="text-sm text-banner-title font-semibold">
-                        {query.userName}
-                      </p>
-                      <p className="text-xs text-gray-400">
-                        Posted on:{" "}
-                        {new Date(query.timestamp).toLocaleDateString()}
-                      </p>
+                    <div className="absolute top-4 left-4 bg-banner-title text-white text-sm font-medium px-3 py-1 rounded-full">
+                      New
                     </div>
                   </div>
 
-                  {/* Read More Button */}
-                  <div className="mt-6 text-center">
+                  <div className="p-6">
+                    <h3 className="text-xl font-semibold text-gray-900 mb-2">
+                      {query.productName}
+                    </h3>
+                    <p className="text-gray-600 mb-4">
+                      Brand: {query.productBrand}
+                    </p>
+
+                    <div className="flex items-center space-x-4 mb-6">
+                      <img
+                        src={query.userImage}
+                        alt={query.userName}
+                        className="w-12 h-12 rounded-full object-cover ring-2 ring-banner-title"
+                      />
+                      <div>
+                        <p className="text-sm font-medium text-gray-900">
+                          {query.userName}
+                        </p>
+                        <p className="text-sm text-gray-500">
+                          {new Date(query.timestamp).toLocaleDateString('en-US', {
+                            month: 'long',
+                            day: 'numeric',
+                            year: 'numeric'
+                          })}
+                        </p>
+                      </div>
+                    </div>
+
                     <a
-                      href={`/queries`} // Adjust the URL path as per your routing logic
-                      className="px-4 py-2 bg-hover-color text-white font-semibold rounded-none shadow-md hover:bg-gray-100 hover:text-banner-title transition-all duration-300"
+                      href={`/query/${query._id}`}
+                      className="block w-full text-center bg-banner-title hover:bg-hover-color text-white font-medium py-3 rounded-lg transition-colors duration-300"
                     >
-                      Read More
+                      See More
                     </a>
                   </div>
                 </motion.div>
               ))}
             </div>
           )}
-        </div>
+        </section>
 
-        {/* Decorative Stats Section */}
-        <div className="px-10 sm:px-6 lg:px-8 py-12 rounded-none">
-          <h2 className="text-4xl font-karla font-bold mb-8 text-center text-gray-800">
-            Statistics
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Total Queries Card */}
-            <motion.div
-              className="bg-white p-6 rounded-none shadow-md border-l-4 border-banner-title"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5 }}
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-500">
-                    Total Queries
+        {/* Statistics Section */}
+        <section className="bg-white py-16">
+          <div className="max-w-7xl mx-auto px-4">
+            <h2 className="text-4xl font-bold text-gray-900 text-center mb-12">
+              Our Impact
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {[
+                {
+                  title: "Total Queries",
+                  value: recentQueries.length,
+                  increase: "12%",
+                  period: "from last month",
+                  icon: (
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                  )
+                },
+                {
+                  title: "Active Users",
+                  value: "2.7k",
+                  increase: "25%",
+                  period: "from last week",
+                  icon: (
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                    </svg>
+                  )
+                },
+                {
+                  title: "Avg Response Time",
+                  value: "1.2s",
+                  increase: "30%",
+                  period: "faster than average",
+                  icon: (
+                    <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  )
+                }
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  className="bg-gray-50 rounded-xl p-8 border border-gray-200"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.2 }}
+                >
+                  <div className="flex items-center justify-between mb-4">
+                    <div className="p-3 bg-banner-title/10 rounded-lg">
+                      <div className="text-banner-title">
+                        {stat.icon}
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <h3 className="text-lg font-medium text-gray-600 mb-2">
+                    {stat.title}
+                  </h3>
+                  <p className="text-4xl font-bold text-gray-900 mb-4">
+                    {stat.value}
                   </p>
-                  <p className="text-3xl font-bold text-banner-title">
-                    {recentQueries.length}
-                  </p>
-                </div>
-                <div className="p-3 bg-purple-100 rounded-full">
-                  <svg
-                    className="w-6 h-6 text-banner-title"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"
-                    />
-                  </svg>
-                </div>
-              </div>
-              <div className="mt-4">
-                <div className="flex items-center">
-                  <span className="text-banner-title text-sm font-semibold">
-                    ↑ 12%
-                  </span>
-                  <span className="text-gray-400 text-sm ml-2">
-                    from last month
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Active Users Card */}
-            <motion.div
-              className="bg-white p-6 rounded-none shadow-md border-l-4 border-banner-title"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-500">
-                    Active Users
-                  </p>
-                  <p className="text-3xl font-bold text-banner-title">2.7k</p>
-                </div>
-                <div className="p-3 bg-purple-100 rounded-full">
-                  <svg
-                    className="w-6 h-6 text-banner-title"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"
-                    />
-                  </svg>
-                </div>
-              </div>
-              <div className="mt-4">
-                <div className="flex items-center">
-                  <span className="text-banner-title text-sm font-semibold">
-                    ↑ 25%
-                  </span>
-                  <span className="text-gray-400 text-sm ml-2">
-                    from last week
-                  </span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Response Time Card */}
-            <motion.div
-              className="bg-white p-6 rounded-none shadow-md border-l-4 border-banner-title"
-              initial={{ y: 50, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
-            >
-              <div className="flex items-center justify-between">
-                <div>
-                  <p className="text-sm font-medium text-gray-500">
-                    Avg Response Time
-                  </p>
-                  <p className="text-3xl font-bold text-banner-title">1.2s</p>
-                </div>
-                <div className="p-3 bg-purple-100 rounded-full">
-                  <svg
-                    className="w-6 h-6 text-banner-title"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                </div>
-              </div>
-              <div className="mt-4">
-                <div className="flex items-center">
-                  <span className="text-banner-title text-sm font-semibold">
-                    ↓ 30%
-                  </span>
-                  <span className="text-gray-400 text-sm ml-2">
-                    faster than average
-                  </span>
-                </div>
-              </div>
-            </motion.div>
+                  <div className="flex items-center text-sm">
+                    <span className="text-green-500 font-medium">↑ {stat.increase}</span>
+                    <span className="text-gray-500 ml-2">{stat.period}</span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
           </div>
-        </div>
+        </section>
 
-        <FeaturesSection></FeaturesSection>
-      </div>
-      <Footer></Footer>
+        <FeaturesSection />
+      </main>
+      
+      <Footer />
     </div>
   );
 };

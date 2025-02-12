@@ -8,9 +8,9 @@ module.exports = {
         karla: ["Karla", "sans-serif"],
       },
       colors: {
-        "background-color": "#D9DCE0",
-        "banner-title": "#283147",
-        "hover-color": "#ED3333",
+        "background-color": "#FFFFFF",
+        "banner-title": "#000000",
+        "hover-color": "#578E7E",
       },
     },
   },
