@@ -108,21 +108,6 @@ const Queries = () => {
       <Navbar />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        {/* <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">All Queries</h1>
-          <button
-            onClick={() => {
-              if (!user) {
-                toast.error("Please login first to add a query");
-                return;
-              }
-              navigate("/add-query");
-            }}
-            className="inline-flex items-center px-6 py-3 border border-black bg-black text-white hover:bg-white hover:text-black transition-colors duration-200 text-sm font-medium"
-          >
-            Add New Query
-          </button>
-        </div> */}
 
         <div className="flex flex-col sm:flex-row justify-between items-center gap-4 mb-8">
           <div className="relative w-full sm:w-96">
