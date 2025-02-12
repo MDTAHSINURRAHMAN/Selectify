@@ -1,10 +1,10 @@
 .swiper-button-next,
 .swiper-button-prev {
-  color: #ED3333; /* Set your desired color */
+  color: #FFFFFF; /* Set your desired color */
 }
 
 .swiper-pagination-bullet {
-  background-color: #ED3333; /* Default color for dots */
+  background-color: #FFFFFF; /* Default color for dots */
   width: 12px; /* Adjust size */
   height: 12px;
 }

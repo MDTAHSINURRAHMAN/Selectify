@@ -39,24 +39,25 @@ const Home = () => {
 
   const sliderData = [
     {
-      image: "https://i.ibb.co.com/9gHxdk2/pexels-paula-schmidt-353488-963486.jpg",
-      title: "Comfort",
-      subtitle: "Stylish Seating",
-      description: "Discover the perfect chairs to enhance your comfort and style for any room in your home.",
+      image: "https://images.pexels.com/photos/3020129/pexels-photo-3020129.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      title: "Six Shades of Lip Tint",
+      subtitle: "Perfect Shades for Every Occasion",
+      description: "Find your ideal lip tint with a variety of shades to match any style or mood.",
     },
     {
-      image: "https://i.ibb.co.com/kMS2Y25/pexels-pixabay-276534.jpg", 
-      title: "Elegance",
-      subtitle: "Modern Living",
-      description: "Explore sleek and functional furniture options to transform your living space into a modern haven.",
+      image: "https://images.pexels.com/photos/1366929/pexels-photo-1366929.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1", 
+      title: "Close-up Photo of Camera Knob",
+      subtitle: "Capture the Details",
+      description: "A high-quality close-up shot that highlights the intricate details of a camera knob, perfect for photography enthusiasts.",
     },
     {
-      image: "https://i.ibb.co.com/8BX4JvT/pexels-fotoaibe-1743229.jpg",
-      title: "Relaxation", 
-      subtitle: "Cozy Bedrooms",
-      description: "Create a restful sanctuary with thoughtfully recommended bedroom essentials.",
+      image: "https://images.pexels.com/photos/1152077/pexels-photo-1152077.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+      title: "Orange and Black Leather Satchel Bag", 
+      subtitle: "Stylish and Functional",
+      description: "This trendy leather satchel combines vibrant colors and ample space, perfect for both casual and formal settings.",
     },
   ];
+  
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-gray-50 to-gray-100">
