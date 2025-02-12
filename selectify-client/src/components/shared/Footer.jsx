@@ -1,6 +1,7 @@
 import React from 'react';
 import { FaFacebookF, FaLinkedinIn, FaTwitter, FaInstagram } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import logo from '../../assets/logo_nobg.png';
 
 const Footer = () => {
     return (
@@ -11,7 +12,7 @@ const Footer = () => {
                     {/* Logo & Description */}
                     <div className="flex flex-col gap-4">
                         <div className="flex items-center gap-4">
-                            <div className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full"></div>
+                            {/* <img src={logo} alt="Selectify Logo" className="w-10 h-10 md:w-12 md:h-12 bg-white rounded-full object-contain" /> */}
                             <h2 className="text-xl md:text-2xl font-bold">Selectify</h2>
                         </div>
                         <p className="text-white/80 text-sm md:text-base">
